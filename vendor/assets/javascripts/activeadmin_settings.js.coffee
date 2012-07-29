@@ -3,7 +3,7 @@
 $ ->
   $('#settings .form form').submit ->
     false
-    
+
   $('.edit_setting_link').click (e) ->
     e.preventDefault()
     id = $(this).attr "data-setting-id"

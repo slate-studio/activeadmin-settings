@@ -4,7 +4,7 @@ require File.expand_path('../lib/activeadmin-settings/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Alex Kravets"]
   gem.email         = ["santyor@gmail.com"]
-  gem.description   = "Settings plugin for activeadmin."
+  gem.description   = "Easy to use general purpose settings backend for activeadmin"
   gem.summary       = ""
   gem.homepage      = "https://github.com/alexkravets/activeadmin-settings"
 
