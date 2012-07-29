@@ -1,0 +1,21 @@
+<div class="value <%= setting.type %>">
+  <%= setting.value %>
+</div>
+
+<div class="form">
+  <%= semantic_form_for setting,
+                        :method => :put,
+                        :url    => admin_setting_path(setting) do |f| %>
+    <%= f.inputs do %>
+      <% case setting.type %>
+      <% when "file" %>
+        <%= f.input :file %>
+        <%= f.input :remove_file, :as => :boolean %>
+      <% when "text" %>
+        <%= f.input :string, :as => :text %>
+      <% else %>
+        <%= f.input :string, :placeholder => "Default: " + setting.default_value %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

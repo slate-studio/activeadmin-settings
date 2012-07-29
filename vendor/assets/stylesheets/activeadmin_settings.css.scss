@@ -1,0 +1,17 @@
+#settings {
+  tr th:first-child { width:30%; }
+  tr th:last-child { width:15%; }
+
+  .update_setting_link { display: none; }
+  tr td .form {
+    display:none;
+    .label  { display:none; }
+    .file .label { display:inline; }
+    .inputs { margin-bottom:0; }
+    input[type="text"], textarea { width:90%; }
+  }
+}
+
+#admins {
+  tr th:last-child { width:15%; }
+}
