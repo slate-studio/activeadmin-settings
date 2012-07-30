@@ -4,11 +4,12 @@
 
   .update_setting_link { display: none; }
   tr td .form {
-    display:none;
+    //display:none;
     .label  { display:none; }
     .file .label { display:inline; }
     .inputs { margin-bottom:0; }
     input[type="text"], textarea { width:90%; }
+    textarea { height:100px; }
   }
 }
 

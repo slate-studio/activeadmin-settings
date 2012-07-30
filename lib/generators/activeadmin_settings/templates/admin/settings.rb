@@ -21,9 +21,7 @@ ActiveAdmin.register ActiveadminSettings::Setting, :as => "Setting" do
     end
 
     column "" do |s|
-      link_to("Edit",   "#", :class => "member_link edit_setting_link", "data-setting-id" => s.id) +
-      link_to("Update", "#", :class => "member_link update_setting_link", "data-setting-id" => s.id) +
-      link_to("Delete", admin_setting_path(s), :class => "member_link", :method => :delete, :confirm => "Are you sure?")
+      link_to("Update", "#", :class => "member_link update_setting_link", "data-setting-id" => s.id)
     end
   end
 

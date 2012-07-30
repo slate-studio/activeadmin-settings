@@ -1,33 +1,31 @@
 #= require jquery.form
 
 $ ->
+  show_update_btn = (el) ->
+    $(el).closest('tr').find('.update_setting_link').show()
+
+  hide_update_btn = (el) ->
+    $(el).closest('tr').find('.update_setting_link').hide()
+
+  $('#settings .form form input, textarea').change ->
+    show_update_btn(this)
+
+  $('#settings .form form input, textarea').keypress ->
+    show_update_btn(this)
+
   $('#settings .form form').submit ->
     false
-
-  $('.edit_setting_link').click (e) ->
-    e.preventDefault()
-    id = $(this).attr "data-setting-id"
-    setting = $("#setting_#{id}")
-    setting.find(".value").hide()
-    setting.find(".form").show()
-    setting.find(".update_setting_link").show()
-    $(this).hide()
 
   $('.update_setting_link').click (e) ->
     e.preventDefault()
     btn = $(this)
     id = btn.attr "data-setting-id"
     setting = $("#setting_#{id}")
-    setting.find(".form").hide()
 
-    # submit form, should use jquery form for file submissions
     form = setting.find(".form form")
     form.submit =>
       form.ajaxSubmit
         success: (value) =>
-          setting.find('.value').html(value)
-          setting.find(".value").show()
-          setting.find(".edit_setting_link").show()
           btn.hide()
       false
     form.submit()
