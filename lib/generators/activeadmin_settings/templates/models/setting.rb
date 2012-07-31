@@ -18,15 +18,15 @@ class ActiveadminSettings::Setting
 
   # Instance
   def type
-    ActiveadminSettings.all_settings[name]["type"] ||= "string"
+    (ActiveadminSettings.all_settings[name]["type"] ||= "string").to_s
   end
 
   def description
-    ActiveadminSettings.all_settings[name]["description"] ||= ""
+    (ActiveadminSettings.all_settings[name]["description"] ||= "").to_s
   end
 
   def default_value
-    ActiveadminSettings.all_settings[name]["default_value"] ||= ""
+    (ActiveadminSettings.all_settings[name]["default_value"] ||= "").to_s
   end
 
   def value
