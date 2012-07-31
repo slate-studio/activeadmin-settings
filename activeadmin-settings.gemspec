@@ -14,7 +14,4 @@ Gem::Specification.new do |gem|
   gem.name          = "activeadmin-settings"
   gem.require_paths = ["lib"]
   gem.version       = ActiveadminSettings::VERSION
-
-  #gem.add_dependency("mime-types")
-  #gem.add_dependency("orm_adapter")
 end

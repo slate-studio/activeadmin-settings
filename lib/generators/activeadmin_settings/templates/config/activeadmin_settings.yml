@@ -3,13 +3,15 @@
 #   ---configuration file v1.0---
 # ================================================================================
 #
-# This file is used to store a list of activeadmin settings.
-#
+# This file is used to store a list of activeadmin settings. Settings are split
+# into groups like this:
+# 
 # Here is a setting template:
-#   Setting Title:
-#     type:            string (default) / text / file / link
-#     description:     setting one sentence description
-#     default_value:   default value is used when setting value is blank
+#   General Group:
+#     Setting Title:
+#       type:            string (default) / text / file / link
+#       description:     setting one sentence description
+#       default_value:   default value is used when setting value is blank
 #
 # Type details: 
 #   Link setting value expected to be in a format of: (link title) http://link.url

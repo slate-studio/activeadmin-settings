@@ -23,9 +23,10 @@ $ ->
     tr  = $(btn.attr("data-id"))
 
     form = tr.find(".form form")
-    form.submit =>
-      form.ajaxSubmit
-        success: (value) =>
-          btn.hide()
-      false
-    form.submit()
+    form.ajaxSubmit
+      success: (value) =>
+        if form.parent().hasClass("file")
+          form.find(".inline-hints").html(value)
+          form.clearForm()
+        btn.hide()
+

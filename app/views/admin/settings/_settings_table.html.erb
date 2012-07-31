@@ -18,14 +18,14 @@
         <em><%= setting.description %></em>
       </td>
       <td class="">
-        <div class="form">
+        <div class="form <%= setting.type %>">
           <%= semantic_form_for setting,
               :method => :put,
               :url    => "/admin/settings/#{setting.id}" do |f| %>
             <%= f.inputs do %>
               <% case setting.type %>
               <% when "file" %>
-                <%= f.input :file %>
+                <%= f.input :file, :hint => setting.value %>
                 <%= f.input :remove_file, :as => :boolean %>
               <% when "text" %>
                 <%= f.input :string, :as => :text %>

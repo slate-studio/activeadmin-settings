@@ -1,12 +1,18 @@
 <div id="settings_tabs">
   <ul class="tabs table_tools_segmented_control">
-    <li><a class="table_tools_button" href="#general">General</a></li>
+    <% groups.each do |g| %>
+      <li>
+        <a class="table_tools_button" href="#<%= g[:slug] %>"><%= g[:name] %></a>
+      </li>
+    <% end %>
     <li><a class="table_tools_button" href="#admins">Admins</a></li>
   </ul>
 
-  <div id="general">
-    <%= render :partial => "settings_table", :locals => {:settings => settings} %>
-  </div>
+  <% groups.each do |g| %>
+    <div id="<%= g[:slug] %>">
+      <%= render :partial => "settings_table", :locals => {:settings => g[:settings]} %>
+    </div>
+  <% end %>
 
   <div id="admins">
     <%= render :partial => "admins_table", :locals => {:admins => admins} %>

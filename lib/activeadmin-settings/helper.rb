@@ -15,5 +15,8 @@ module ActiveadminSettings
         link_to(title, url, html_options)
       end
     end    
+
+    module_function :setting_tag, :link_setting_tag
   end
 end
+
