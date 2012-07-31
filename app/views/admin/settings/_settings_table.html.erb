@@ -1,0 +1,48 @@
+<table  border="0"
+        cellspacing="0"
+        cellpadding="0"
+        id="settings"
+        class="index_table index">
+  <thead>
+    <tr>
+      <th class="">Name</th>
+      <th class="">Value</th>
+      <th class=""></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% settings.each do |setting| %>
+    <tr class="odd" id="setting_<%= setting.id %>">
+      <td class="">
+        <strong><%= setting.name %></strong></br>
+        <em><%= setting.description %></em>
+      </td>
+      <td class="">
+        <div class="form">
+          <%= semantic_form_for setting,
+              :method => :put,
+              :url    => "/admin/settings/#{setting.id}" do |f| %>
+            <%= f.inputs do %>
+              <% case setting.type %>
+              <% when "file" %>
+                <%= f.input :file %>
+                <%= f.input :remove_file, :as => :boolean %>
+              <% when "text" %>
+                <%= f.input :string, :as => :text %>
+              <% else %>
+                <%= f.input :string, :placeholder => "Default: " + setting.default_value %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      </td>
+      <td class="">
+        <a href="#" class="member_link update_link"
+                    data-id="#setting_<%= setting.id %>">
+          Update
+        </a>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

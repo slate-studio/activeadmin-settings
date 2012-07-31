@@ -1,0 +1,22 @@
+<tr class="odd">
+  <td class="">
+    <div class="form new_admin">
+      <%= semantic_form_for AdminUser.new,
+                            :method => :post,
+                            :url    => "/admin/admin_users" do |f| %>
+        <%= f.inputs do %>
+          <%= f.input :email, :required => true %>
+          <%= f.input :password, :required => true %>
+          <%= f.input :password_confirmation, :required => true %>
+        <% end %>
+      <% end %>
+    </div>
+  </td>
+  <td class="new_admin_actions">
+    <a href="#" class="member_link new_link">New Admin</a>
+    <span class="form_actions">
+      <a href="#" class="member_link create_link">Create</a>
+      <a href="#" class="member_link cancel_link">Cancel</a>
+    </span>
+  </td>
+</tr>

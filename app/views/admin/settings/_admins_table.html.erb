@@ -1,0 +1,16 @@
+<table  border="0"
+        cellspacing="0"
+        cellpadding="0"
+        id="admins"
+        class="index_table index">
+  <thead>
+    <tr>
+      <th class="">Email</th>
+      <th class=""></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render :partial => "admin", :collection => admins %>
+    <%= render :partial => "admin_form" %>
+  </tbody>
+</table>

@@ -1,0 +1,14 @@
+<div id="settings_tabs">
+  <ul class="tabs table_tools_segmented_control">
+    <li><a class="table_tools_button" href="#general">General</a></li>
+    <li><a class="table_tools_button" href="#admins">Admins</a></li>
+  </ul>
+
+  <div id="general">
+    <%= render :partial => "settings_table", :locals => {:settings => settings} %>
+  </div>
+
+  <div id="admins">
+    <%= render :partial => "admins_table", :locals => {:admins => admins} %>
+  </div>
+</div>

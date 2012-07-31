@@ -15,4 +15,16 @@
 
 #admins {
   tr th:last-child { width:15%; }
+
+  .form { display:none; }
+  .form_actions { display:none; }
+}
+
+ul.tabs {
+  margin-bottom: 14px;
+}
+
+.flashes {
+  position: absolute;
+  width: 100%;
 }

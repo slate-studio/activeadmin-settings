@@ -1,0 +1,42 @@
+<tr class="odd admin" id="admin_<%= admin.id %>">
+  <td class="">
+    <strong><%= admin.email %></strong>
+    <div class="form">
+      <br/>
+      <%= semantic_form_for admin,
+                            :method => :put,
+                            :url    => "/admin/admin_users/#{admin.id}" do |f| %>
+        <%= f.inputs do %>
+          <%= f.input :password, :as => :password, :required => true %>
+          <%= f.input :password_confirmation, :as => :password, :required => true %>
+        <% end %>
+      <% end %>
+    </div>
+  </td>
+  <td>
+    <span class="admin_actions">
+      <a href="#" class="member_link credentials_link"
+                  data-id="#admin_<%= admin.id %>">
+        Credentials
+      </a>
+      <a href="/admin/admin_users/<%= admin.id %>"
+         class="member_link delete_link"
+         data-method="delete"
+         data-confirm="Are you sure?"
+         data-id="#admin_<%= admin.id %>">
+        Delete
+      </a>
+    </span>
+
+    <span class="form_actions">
+      <a href="#" class="member_link update_link"
+                  data-id="#admin_<%= admin.id %>">
+        Update
+      </a>
+      <a href="#" class="member_link cancel_link"
+                  data-id="#admin_<%= admin.id %>">
+        Cancel
+      </a>
+    </span>
+  </td>
+</tr>

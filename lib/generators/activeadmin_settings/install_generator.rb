@@ -24,6 +24,10 @@ module ActiveadminSettings
         copy_file "config/activeadmin_settings.yml", "config/activeadmin_settings.yml"
       end
 
+      def mount_engine
+        route "mount ActiveadminSettings::Engine => '/admin'"
+      end
+
       def add_assets
         if File.exist?('app/assets/javascripts/active_admin.js')
           insert_into_file  "app/assets/javascripts/active_admin.js",
