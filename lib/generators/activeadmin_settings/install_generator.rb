@@ -16,7 +16,6 @@ module ActiveadminSettings
 
         # admin
         puts "Installing admin:"
-        copy_file "admin/admin_users.rb", "app/admin/admin_users.rb"
         copy_file "admin/settings.rb",    "app/admin/settings.rb"
 
         # config
