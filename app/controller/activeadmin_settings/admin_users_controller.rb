@@ -1,4 +1,6 @@
 class ActiveadminSettings::AdminUsersController < ApplicationController
+  before_filter :authenticate_admin_user!
+
   def update
     @object = AdminUser.find(params[:id])
     if @object.update_attributes(params[:admin_user])

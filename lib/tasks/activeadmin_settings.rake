@@ -19,5 +19,8 @@ namespace :activeadmin do
   desc "Add settings from activeadmin_settings.yml file to the db"
   task :flush_settings => :environment do
     ActiveadminSettings::Setting.all.destroy
+    ActiveadminSettings.all_settings.each_key |name|
+      Setting.find_or_create_by(name: name)
+    end
   end
 end
