@@ -18,7 +18,7 @@ namespace :activeadmin do
         
         # Save default text values to db,
         # as this way it's more easy to edit them
-        if s.type == "text"
+        if s.type == "text" or s.type == "html"
           s.string = s.default_value
           s.save
         end

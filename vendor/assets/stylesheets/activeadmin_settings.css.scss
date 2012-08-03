@@ -5,14 +5,37 @@
   tr th:last-child { width:15%; }
 
   .update_link { display: none; }
-  .option-type-html .update_link { display: inline; }
+  
+  .option-type-html {
+    .update_link { display: inline; }
+  }
+  
   tr td .form {
-    //display:none;
     .label  { display:none; }
+
     .file .label { display:inline; }
+
     .inputs { margin-bottom:0; }
+
     input[type="text"], textarea { width:90%; }
     textarea { height:100px; }
+
+    &.html {
+      fieldset {
+        padding: 0;
+        background: transparent;
+        border: none;
+        -webkit-box-shadow: none;
+           -moz-box-shadow: none;
+                box-shadow: none;
+
+        li {
+          padding: 0px;
+        }
+
+        textarea { height: 280px; }
+      }
+    }
   }
 }
 
