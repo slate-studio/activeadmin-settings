@@ -1,8 +1,11 @@
+//= require redactor
+
 #settings {
   tr th:first-child { width:30%; }
   tr th:last-child { width:15%; }
 
-  .update_setting_link { display: none; }
+  .update_link { display: none; }
+  .option-type-html .update_link { display: inline; }
   tr td .form {
     //display:none;
     .label  { display:none; }

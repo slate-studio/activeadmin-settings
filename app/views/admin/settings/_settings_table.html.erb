@@ -12,12 +12,12 @@
   </thead>
   <tbody>
     <% settings.each do |setting| %>
-    <tr class="odd" id="setting_<%= setting.id %>">
-      <td class="">
+    <tr class="odd option-type-<%= setting.type %>" id="setting_<%= setting.id %>">
+      <td>
         <strong><%= setting.name %></strong></br>
         <em><%= setting.description %></em>
       </td>
-      <td class="">
+      <td>
         <div class="form <%= setting.type %>">
           <%= semantic_form_for setting,
               :method => :put,
@@ -29,6 +29,10 @@
                 <%= f.input :remove_file, :as => :boolean %>
               <% when "text" %>
                 <%= f.input :string, :as => :text %>
+              <% when "html" %>
+                <%= f.input :string,
+                            :as => :text,
+                            :input_html => { :class => "settings-redactor" } %>
               <% else %>
                 <%= f.input :string, :placeholder => "Default: " + setting.default_value %>
               <% end %>
@@ -36,7 +40,7 @@
           <% end %>
         </div>
       </td>
-      <td class="">
+      <td>
         <a href="#" class="member_link update_link"
                     data-id="#setting_<%= setting.id %>">
           Update

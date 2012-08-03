@@ -4,6 +4,19 @@ module ActiveadminSettings
   require 'activeadmin-settings/engine'
   require 'activeadmin-settings/helper'
 
+  IMAGE_TYPES = [ 'image/jpeg',
+                  'image/png',
+                  'image/gif',
+                  'image/jpg',
+                  'image/pjpeg',
+                  'image/tiff',
+                  'image/x-png' ]
+
+  mattr_accessor :image_file_types
+  @@image_file_types = ["jpg", "jpeg", "png", "gif", "tiff"]
+
+
+  # Load configuration from config/activeadmin_settings.yml
   def self.load_config
     config_file = ::Rails.root.join("config/activeadmin_settings.yml")
     @load_config = {}

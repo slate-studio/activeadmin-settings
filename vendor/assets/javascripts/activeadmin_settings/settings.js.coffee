@@ -15,8 +15,6 @@ $ ->
   $('#settings .form form').submit ->
     false
 
-  $('#settings .update_link').hide()
-  
   $('#settings .update_link').click (e) ->
     e.preventDefault()
     btn = $(this)
