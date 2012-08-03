@@ -1,7 +1,6 @@
 class ActiveadminSettings::Setting
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Reorder
 
   # Fields
   field           :name
