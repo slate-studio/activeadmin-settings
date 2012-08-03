@@ -6,14 +6,6 @@ module ActiveadminSettings
       source_root File.expand_path('../templates', __FILE__)
 
       def copy_files
-        # models
-        puts "Installing models:"
-        copy_file "models/setting.rb", "app/models/activeadmin_settings/setting.rb"
-
-        # uploaders
-        puts "Installing uploaders:"
-        copy_file "uploaders/settings_file_uploader.rb", "app/uploaders/settings_file_uploader.rb"
-
         # admin
         puts "Installing admin:"
         copy_file "admin/settings.rb",    "app/admin/settings.rb"

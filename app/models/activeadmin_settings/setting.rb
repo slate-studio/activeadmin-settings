@@ -5,7 +5,7 @@ class ActiveadminSettings::Setting
   # Fields
   field           :name
   field           :string, :default => ""
-  mount_uploader  :file, SettingsFileUploader
+  mount_uploader  :file, ActiveadminSettings::SettingsFileUploader
 
   # Validators
   validates_presence_of   :name
@@ -25,7 +25,13 @@ class ActiveadminSettings::Setting
   end
 
   def default_value
-    (ActiveadminSettings.all_settings[name]["default_value"] ||= "").to_s
+    val = (ActiveadminSettings.all_settings[name]["default_value"] ||= "").to_s
+    
+    if type == "file" and not val.include? '//'
+      val = ActionController::Base.helpers.asset_path(val)
+    end
+    
+    val
   end
 
   def value
