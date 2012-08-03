@@ -5,14 +5,16 @@ enable_redactor = ->
   # the problem is that not current redactors are not
   # clickable after init.
   
-  window.redactor_settings =
-    buttons: ['html', '|',
-              'formatting', '|',
-              'bold', 'italic', 'deleted', '|',
-              'unorderedlist', 'orderedlist', 'outdent', 'indent', '|',
-              'image', 'video', 'file', 'table', 'link', '|',
-              'alignleft', 'aligncenter', 'alignright', 'justify', '|',
-              'fullscreen' ]
+  unless window.redactor_settings
+    window.redactor_settings = {}
+
+  window.redactor_settings["buttons"] = [ 'html', '|',
+                                          'formatting', '|',
+                                          'bold', 'italic', 'deleted', '|',
+                                          'unorderedlist', 'orderedlist', 'outdent', 'indent', '|',
+                                          'image', 'video', 'file', 'table', 'link', '|',
+                                          'alignleft', 'aligncenter', 'alignright', 'justify', '|',
+                                          'fullscreen' ]
 
   # after tab was clicked there is a workaround to turn on redactor
   $('#settings_tabs').bind 'easytabs:after', (event, $clicked, $targetPanel, settings) ->
