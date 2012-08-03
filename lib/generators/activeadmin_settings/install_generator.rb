@@ -34,6 +34,12 @@ module ActiveadminSettings
           puts "It doesn't look like you've installed activeadmin: active_admin.scss is missing.\nPlease install it and try again."
         end
       end
+
+      def add_gems
+        gem "carrierwave-mongoid", :require => "carrierwave/mongoid"
+        gem "mini_magick"
+        gem "mongoid_globalize"
+      end
     end
   end
 end

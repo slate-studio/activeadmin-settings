@@ -1,10 +1,16 @@
 class ActiveadminSettings::Setting
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Globalize
 
   # Fields
-  field           :name
-  field           :string, :default => ""
+  field :name
+  
+  translates do
+    field :string, :default => ""
+    fallbacks_for_empty_translations!
+  end
+
   mount_uploader  :file, ActiveadminSettings::SettingsFileUploader
 
   # Validators
@@ -38,5 +44,15 @@ class ActiveadminSettings::Setting
     val = respond_to?(type) ? send(type).to_s : send(:string).to_s
     val = default_value if val.empty?
     val.html_safe
+  end
+
+  # Class
+  def self.initiate_setting(name)
+    s = self.new(name: name)
+    if s.type == "text" or s.type == "html"
+      s.string = s.default_value
+    end
+    s.save
+    s
   end
 end

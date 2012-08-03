@@ -12,7 +12,10 @@ ActiveAdmin.register_page "Settings" do
     groups.each do |g|
       g[:default_settings].each_key do |name|
         s = all_settings[name]
-        g[:settings] << s if s
+        unless s
+          s = ActiveadminSettings::Setting.initiate_setting(name)
+        end
+        g[:settings] << s 
       end
     end
 

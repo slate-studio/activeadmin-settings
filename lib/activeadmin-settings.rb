@@ -39,7 +39,7 @@ module ActiveadminSettings
   def self.groups
     @groups = []
     load_config.each do |key, settings|
-      @groups << { :name     => key,
+      @groups << {:name     => key,
                   :slug     => key.downcase.gsub(" ", "_"),
                   :default_settings => settings,
                   :settings => [] }
