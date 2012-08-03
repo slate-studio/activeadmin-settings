@@ -3,4 +3,4 @@ $ ->
   hideFlashes = ->
     $('.flashes').hide()
 
-  setTimeout(hideFlashes, 1000)
+  setTimeout(hideFlashes, 3000)

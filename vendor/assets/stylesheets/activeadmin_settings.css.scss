@@ -25,6 +25,10 @@ ul.tabs {
 }
 
 .flashes {
-  position: absolute;
-  width: 100%;
+  position:absolute;
+  width:100%;
+  bottom:0px;
 }
+
+body.logged_in .flash.flash_notice { border-bottom:0px!important; border-top:1px solid #ADCBAF; }
+body.logged_in .flash { top:0px!important; margin-bottom:0px!important; }
