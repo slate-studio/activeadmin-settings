@@ -7,11 +7,12 @@ module ActiveadminSettings
   def self.load_config
     config_file = ::Rails.root.join("config/activeadmin_settings.yml")
     @load_config = {}
-    
+
     if File.exists?(config_file)
       data = YAML::load(ERB.new(IO.read(config_file)).result)
       @load_config = data if data
     end
+    @load_config
   end
 
   def self.all_settings
