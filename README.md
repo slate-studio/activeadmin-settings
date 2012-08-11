@@ -4,6 +4,7 @@
 
 Easy to use general purpose settings backend for activeadmin. At the moment only [activeadmin-mongoid](https://github.com/elia/activeadmin-mongoid/) is suported. ActiveRecord support is not in my plans, so everyone interested is welcome on a board.
 
+![ActiveadminSettings Demo](github.com/alexkravets/activeadmin-settings/img/activeadmin-settings-demo.jpg)
 
 ### Installation
 
