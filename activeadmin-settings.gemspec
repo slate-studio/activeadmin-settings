@@ -14,4 +14,12 @@ Gem::Specification.new do |gem|
   gem.name          = "activeadmin-settings"
   gem.require_paths = ["lib"]
   gem.version       = ActiveadminSettings::VERSION
+
+  gem.add_runtime_dependency "select2-rails"
+  gem.add_runtime_dependency "carrierwave-mongoid"
+  gem.add_runtime_dependency "mini_magick"
+  gem.add_runtime_dependency "mongoid_globalize"
+  gem.add_runtime_dependency "fog"
+  gem.add_runtime_dependency "aws-s3"
+  gem.add_runtime_dependency "heroku-mongo-backup"
 end

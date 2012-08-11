@@ -1,5 +1,10 @@
 require "activeadmin-settings/version"
 
+require "carrierwave/mongoid"
+require "mini_magick"
+require "select2-rails"
+require "mongoid_globalize"
+
 module ActiveadminSettings
   require 'activeadmin-settings/engine'
   require 'activeadmin-settings/helper'
