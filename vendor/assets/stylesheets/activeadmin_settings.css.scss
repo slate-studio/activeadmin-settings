@@ -1,5 +1,5 @@
-//= require select2
 //= require redactor
+//= require select2
 //= require_self
 
 #settings {
@@ -61,3 +61,7 @@ ul.tabs {
 
 body.logged_in .flash.flash_notice { border-bottom:0px!important; border-top:1px solid #ADCBAF; }
 body.logged_in .flash { top:0px!important; margin-bottom:0px!important; }
+
+.admin_settings {
+  .breadcrumb { display:none; }
+}
