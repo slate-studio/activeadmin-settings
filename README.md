@@ -80,6 +80,4 @@ I'm going to add types:
 * `Dropdown` - dropdown with options
 * `List` - list bases selection
 
-Issues or feature requests are [welcome](https://github.com/alexkravets/activeadmin-settings/issues?state=open).
-
 ### GLHF
