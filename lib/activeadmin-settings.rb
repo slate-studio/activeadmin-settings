@@ -1,13 +1,16 @@
 require "activeadmin-settings/version"
 
+# WARNING: mongoid version dependent libraries
+require "mongoid_globalize"
 require "carrierwave/mongoid"
+
 require "mini_magick"
 require "select2-rails"
-require "mongoid_globalize"
 
 module ActiveadminSettings
   require 'activeadmin-settings/engine'
   require 'activeadmin-settings/helper'
+  require 'activeadmin-settings/routing'
 
   IMAGE_TYPES = [ 'image/jpeg',
                   'image/png',

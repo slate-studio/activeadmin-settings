@@ -16,7 +16,7 @@ module ActiveadminSettings
       end
 
       def mount_engine
-        route "mount ActiveadminSettings::Engine => '/admin'"
+        route "mount_activeadmin_settings()"
       end
 
       def add_assets
