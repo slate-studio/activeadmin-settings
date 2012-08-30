@@ -6,6 +6,7 @@ Easy to use general purpose settings backend for activeadmin. At the moment only
 
 ![ActiveadminSettings Demo](https://raw.github.com/alexkravets/activeadmin-settings/master/img/activeadmin-settings-demo.jpg)
 
+
 ### Installation
 
 Add to `Gemfile`:
@@ -15,6 +16,42 @@ Add to `Gemfile`:
 Run installer:
 
     $ rails g activeadmin_settings:install
+
+#### Mongoid 2.x
+
+If you're using mongoid 2.x the gem expects to see **activeadmin-mongoid** and **carrierwave-mongoid** (for image uploading feature) in Gemfile. Here is a working example:
+
+    gem "aws-s3"
+    gem "fog"
+    gem "mini_magick"
+    gem "carrierwave-mongoid"
+
+    gem "bson_ext"
+    gem "mongoid"
+    gem "devise"
+    gem "activeadmin-mongoid"
+    gem "activeadmin-settings"
+
+#### Mongoid 3.x
+
+Here is an example of Gemfile with a support of 3.x version:
+
+    # Mongoid 3.x
+    gem 'moped',    git: 'git://github.com/mongoid/moped.git'
+    gem 'mongoid',  '~> 3.0.5'
+
+    # Assets
+    gem 'aws-s3'
+    gem 'fog'
+    gem 'mini_magick'
+    gem 'carrierwave-mongoid',  git:      'git://github.com/jnicklas/carrierwave-mongoid.git',
+                                branch:   'mongoid-3.0',
+                                require:  'carrierwave/mongoid'
+
+    # Activeadmin
+    gem 'devise',               '>= 2.1.2'
+    gem 'activeadmin-mongoid',  git: 'git://github.com/elia/activeadmin-mongoid.git'
+    gem 'activeadmin-settings'
 
 
 ### Configuration

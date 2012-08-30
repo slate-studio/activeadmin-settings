@@ -1,11 +1,6 @@
 require "activeadmin-settings/version"
 
-# WARNING: mongoid version dependent libraries
 require "mongoid_globalize"
-require "carrierwave/mongoid"
-
-require "mini_magick"
-require "select2-rails"
 
 module ActiveadminSettings
   require 'activeadmin-settings/engine'
