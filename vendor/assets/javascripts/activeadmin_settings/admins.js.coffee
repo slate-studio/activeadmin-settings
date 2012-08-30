@@ -6,7 +6,6 @@ $ ->
       $("#admins .create_link").click()
 
   $('tr.admin #admin_user_password_confirmation').keypress (e) ->
-    alert 'kuku'
     if e.which == 13
       e.preventDefault()
       $(this).closest("tr.admin").find(".update_link").click()

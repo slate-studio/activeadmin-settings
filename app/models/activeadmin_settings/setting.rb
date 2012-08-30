@@ -19,7 +19,6 @@ class ActiveadminSettings::Setting
   validates_length_of     :name, minimum: 1
 
   # Indexes
-  
   index :name rescue index name: 1
               # Mongoid 3.x workaround
 
