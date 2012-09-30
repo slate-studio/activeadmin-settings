@@ -2,6 +2,8 @@
 
 **IN DEVELOPMENT**
 
+**TODO**: use yaml file only for settings synchronisation, all settings should be stored in db with all those default values and other meta.
+
 Easy to use general purpose settings backend for activeadmin. At the moment only [activeadmin-mongoid](https://github.com/elia/activeadmin-mongoid/) is suported. ActiveRecord support is not in my plans, so everyone interested is welcome on a board.
 
 ![ActiveadminSettings Demo](https://raw.github.com/slate-studio/activeadmin-settings/master/img/activeadmin-settings-demo.jpg)
