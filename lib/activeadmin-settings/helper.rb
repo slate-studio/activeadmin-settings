@@ -1,12 +1,12 @@
 module ActiveadminSettings
   module Helpers
     def settings_value(name)
-      Setting.find_or_create_by(name: name).value
+      Setting[name]
     end
 
     def settings_link_value(name, html_options={})
-      val = Setting.find_or_create_by(name: name).value
-      
+      val = Setting[name]
+
       if not val.empty? # add regular expression check here
         title, url = val.split(')')
         title.gsub!('(', '').strip!
@@ -14,7 +14,7 @@ module ActiveadminSettings
 
         link_to(title, url, html_options)
       end
-    end    
+    end
 
     module_function :settings_value, :settings_link_value
   end
