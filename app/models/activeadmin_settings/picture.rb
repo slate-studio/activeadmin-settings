@@ -1,48 +1,66 @@
-class ActiveadminSettings::Picture
-  include Mongoid::Document
-  include Mongoid::Timestamps
+module ActiveadminSettings
+  module PictureMethods
 
-  # Fields
-  field :data_file_size
-  field :data_content_type
-  field :width,   :type => Integer
-  field :height,  :type => Integer
+    def self.included(base)
+      # Features
+      base.mount_uploader :data, ActiveadminSettings::RedactorPictureUploader
 
-  # Features
-  mount_uploader :data, ActiveadminSettings::RedactorPictureUploader
+      # Scopes
+      base.default_scope order_by(:created_at => :desc)
+    end
 
-  # Scopes
-  default_scope order_by(:created_at => :desc)
+    # Helpers
+    def has_dimensions?
+      respond_to?(:width) && respond_to?(:height)
+    end
 
-  # Helpers
-  def has_dimensions?
-    respond_to?(:width) && respond_to?(:height)
+    def image?
+      ActiveadminSettings::IMAGE_TYPES.include?(data_content_type)
+    end
+
+    def url
+      data.url
+    end
+
+    def image
+      url
+    end
+
+    def thumb
+      data.thumb.url
+    end
+
+    def as_json_methods
+      [:image, :thumb]
+    end
+
+    def as_json(options = nil)
+      options = {
+        :methods => as_json_methods
+      }
+      super options
+    end
   end
 
-  def image?
-    ActiveadminSettings::IMAGE_TYPES.include?(data_content_type)
-  end
+  if defined?(Mongoid)
+    class Picture
+      include Mongoid::Document
+      include Mongoid::Timestamps
 
-  def url
-    data.url
-  end
+      # Fields
+      field :data_file_size
+      field :data_content_type
+      field :width,   :type => Integer
+      field :height,  :type => Integer
 
-  def image
-    url
-  end
+      include PictureMethods
+    end
+  else
+    class Picture < ActiveRecord::Base
 
-  def thumb
-    data.thumb.url
-  end
+      attr_accessible :data_content_type, :data_file_size, :height, :width, :data
 
-  def as_json_methods
-    [:image, :thumb]
-  end
-
-  def as_json(options = nil)
-    options = {
-      :methods => as_json_methods
-    }
-    super options
+      include PictureMethods
+    end
   end
 end

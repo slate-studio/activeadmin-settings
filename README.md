@@ -4,7 +4,7 @@
 
 **TODO**: use yaml file only for settings synchronisation, all settings should be stored in db with all those default values and other meta.
 
-Easy to use general purpose settings backend for activeadmin. At the moment only [activeadmin-mongoid](https://github.com/elia/activeadmin-mongoid/) is suported. ActiveRecord support is not in my plans, so everyone interested is welcome on a board.
+Easy to use general purpose settings backend for activeadmin.
 
 ![ActiveadminSettings Demo](https://raw.github.com/slate-studio/activeadmin-settings/master/img/activeadmin-settings-demo.jpg)
 
@@ -19,6 +19,21 @@ Run installer:
 
     $ rails g activeadmin_settings:install
 
+#### ActiveRecord
+
+    gem "aws-s3"
+    gem "fog"
+    gem "mini_magick"
+    gem "carrierwave"
+
+    gem "bson_ext"
+    gem "devise"
+    gem "activeadmin-settings"
+
+    ```
+    rake activeadmin_settings:install:migrations
+    ```
+
 #### Mongoid 2.x
 
 If you're using mongoid 2.x the gem expects to see **activeadmin-mongoid** and **carrierwave-mongoid** (for image uploading feature) in Gemfile. Here is a working example:
@@ -30,6 +45,7 @@ If you're using mongoid 2.x the gem expects to see **activeadmin-mongoid** and *
 
     gem "bson_ext"
     gem "mongoid"
+    gem "mongoid-globalize"
     gem "devise"
     gem "activeadmin-mongoid"
     gem "activeadmin-settings"
@@ -53,6 +69,7 @@ Here is an example of Gemfile with a support of 3.x version:
     # Activeadmin
     gem 'devise',               '>= 2.1.2'
     gem 'activeadmin-mongoid',  git: 'git://github.com/elia/activeadmin-mongoid.git'
+    gem "mongoid-globalize"
     gem 'activeadmin-settings'
 
 
