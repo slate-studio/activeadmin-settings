@@ -7,7 +7,23 @@ module ActiveadminSettings
       base.validates_presence_of   :name
       base.validates_uniqueness_of :name
       base.validates_length_of     :name, minimum: 1
+
+      base.extend ClassMethods
     end
+
+
+    # Class
+    module ClassMethods
+      def initiate_setting(name)
+        s = self.new(name: name)
+        if s.type == "text" or s.type == "html"
+          s.string = s.default_value
+        end
+        s.save
+        s
+      end
+    end
+
 
     # Instance
     def type
@@ -28,25 +44,12 @@ module ActiveadminSettings
       val
     end
 
-    def self.[](name)
-      find_or_create_by(:name => name).value
-    end
-
     def value
       val = respond_to?(type) ? send(type).to_s : send(:string).to_s
       val = default_value if val.empty?
       val.html_safe
     end
 
-    # Class
-    def self.initiate_setting(name)
-      s = self.new(name: name)
-      if s.type == "text" or s.type == "html"
-        s.string = s.default_value
-      end
-      s.save
-      s
-    end
   end
 
   if defined?(Mongoid)
@@ -62,12 +65,21 @@ module ActiveadminSettings
         field :string, :default => ""
         fallbacks_for_empty_translations!
       end
+
       include SettingMethods
+
+      def self.[](name)
+        find_or_create_by(:name => name).value
+      end
     end
   else
     class Setting < ActiveRecord::Base
-      attr_accessible :name, :string, :file
       include SettingMethods
+      attr_accessible :name, :string, :file
+
+      def self.[](name)
+        find_or_create_by_name(name).value
+      end
     end
   end
 end
