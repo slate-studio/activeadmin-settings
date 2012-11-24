@@ -31,6 +31,7 @@ Run installer:
     gem "activeadmin-settings"
 
 Run migrations:
+
     $ rake activeadmin_settings:install:migrations
     $ rake db:migrate
 
