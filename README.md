@@ -30,9 +30,9 @@ Run installer:
     gem "devise"
     gem "activeadmin-settings"
 
-    ```
-    rake activeadmin_settings:install:migrations
-    ```
+Run migrations:
+    $ rake activeadmin_settings:install:migrations
+    $ rake db:migrate
 
 #### Mongoid 2.x
 
