@@ -4,9 +4,6 @@ module ActiveadminSettings
     def self.included(base)
       # Features
       base.mount_uploader :data, ActiveadminSettings::RedactorPictureUploader
-
-      # Scopes
-      base.default_scope order_by(:created_at => :desc)
     end
 
     # Helpers
@@ -54,6 +51,9 @@ module ActiveadminSettings
       field :height,  :type => Integer
 
       include PictureMethods
+
+      # Scopes
+      default_scope order_by(:created_at => :desc)
     end
   else
     class Picture < ActiveRecord::Base
@@ -61,6 +61,9 @@ module ActiveadminSettings
       attr_accessible :data_content_type, :data_file_size, :height, :width, :data
 
       include PictureMethods
+
+      # Scopes
+      default_scope order('created_at desc')
     end
   end
 end
