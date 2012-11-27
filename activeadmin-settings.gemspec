@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.version       = ActiveadminSettings::VERSION
   gem.authors       = ["Alex Kravets"]
   gem.email         = ["santyor@gmail.com"]
-  gem.homepage      = "https://github.com/alexkravets/activeadmin-settings"
+  gem.homepage      = "https://github.com/slate-studio/activeadmin-settings"
   gem.description   = "Easy to use general purpose settings backend for activeadmin"
   gem.summary       = ""
 
