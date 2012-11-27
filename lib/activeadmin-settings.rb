@@ -1,8 +1,10 @@
 require "activeadmin-settings/version"
 
-require "mongoid_globalize"
-
 module ActiveadminSettings
+  def self.table_name_prefix
+    'activeadmin_settings_'
+  end
+
   require 'activeadmin-settings/engine'
   require 'activeadmin-settings/helper'
   require 'activeadmin-settings/routing'
