@@ -1,0 +1,162 @@
+.redactor_editor,
+.redactor_editor:focus,
+.redactor_editor div,
+.redactor_editor p,
+.redactor_editor ul,
+.redactor_editor ol,
+.redactor_editor table,
+.redactor_editor dl,
+.redactor_editor blockquote,
+.redactor_editor pre,
+.redactor_editor h1,
+.redactor_editor h2,
+.redactor_editor h3,
+.redactor_editor h4,
+.redactor_editor h5 {
+  font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif !important;
+}
+
+.redactor_editor code,
+.redactor_editor pre {
+  font-family: Menlo, Monaco, monospace, sans-serif !important;
+}
+
+.redactor_editor,
+.redactor_editor:focus,
+.redactor_editor div,
+.redactor_editor p,
+.redactor_editor ul,
+.redactor_editor ol,
+.redactor_editor table,
+.redactor_editor dl,
+.redactor_editor blockquote,
+.redactor_editor pre {
+  font-size: 15px !important;
+  line-height: 1.45em !important;
+}
+
+.redactor_editor a {
+  color: #15c !important;
+  text-decoration: underline !important;
+}
+
+.redactor_editor object,
+.redactor_editor embed,
+.redactor_editor video,
+.redactor_editor img {
+  width: auto;
+  max-width: 100%;
+}
+.redactor_editor video,
+.redactor_editor img {
+  height: auto;
+}
+
+.redactor_editor div,
+.redactor_editor p,
+.redactor_editor ul,
+.redactor_editor ol,
+.redactor_editor table,
+.redactor_editor dl,
+.redactor_editor blockquote,
+.redactor_editor pre {
+  box-shadow: none !important;
+  background: none !important;
+  margin: 0 !important;
+  margin-bottom: 15px !important;
+  border: none;
+}
+.redactor_editor iframe,
+.redactor_editor object,
+.redactor_editor hr {
+  margin-bottom: 15px !important;
+}
+.redactor_editor blockquote {
+  margin-left: 3em !important;
+  font-style: italic !important;
+  color: #777;
+}
+.redactor_editor ul,
+.redactor_editor ol {
+  padding-left: 2em !important;
+}
+.redactor_editor ul ul,
+.redactor_editor ol ol,
+.redactor_editor ul ol,
+.redactor_editor ol ul {
+  border: none;
+  margin: 2px !important;
+  padding: 0 !important;
+  padding-left: 2em !important;
+}
+.redactor_editor dl dt { font-weight: bold; }
+.redactor_editor dd { margin-left: 1em;}
+
+.redactor_editor table {
+  border-collapse: collapse;
+  font-size: 1em !important;
+}
+.redactor_editor table td {
+  border: 1px solid #ddd;
+  padding: 5px !important;
+  vertical-align: top;
+}
+.redactor_editor table thead td {
+  border-bottom: 2px solid #000 !important;
+  font-weight: bold !important;
+}
+.redactor_editor code {
+  background-color: #d8d7d7 !important;
+}
+.redactor_editor pre {
+  font-size: 90% !important;
+  background: #f8f8f8 !important;
+  border: 1px solid #ddd !important;
+  border-radius: 3px !important;
+  padding: 1em !important;
+  white-space: pre;
+  overflow: auto;
+}
+.redactor_editor hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+}
+
+.redactor_editor h1,
+.redactor_editor h2,
+.redactor_editor h3,
+.redactor_editor h4,
+.redactor_editor h5 {
+  color: #000;
+  background: none;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-weight: bold;
+}
+
+.redactor_editor h1 {
+  font-size: 36px !important;
+  line-height: 40px !important;
+  margin-bottom: 10px !important;
+}
+.redactor_editor h2 {
+  font-size: 30px !important;
+  line-height: 38px !important;
+  margin-bottom: 15px !important;
+}
+.redactor_editor h3 {
+  font-size: 24px !important;
+  line-height: 30px !important;
+  margin-bottom: 10px !important;
+}
+.redactor_editor h4 {
+  font-size: 18px !important;
+  line-height: 24px !important;
+  margin-bottom: 10px !important;
+}
+.redactor_editor h5 {
+  font-size: 1em !important;
+  margin-bottom: 10px !important;
+}
