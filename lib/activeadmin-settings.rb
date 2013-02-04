@@ -19,11 +19,13 @@ module ActiveadminSettings
 
   mattr_accessor :image_file_types
   @@image_file_types = ["jpg", "jpeg", "png", "gif", "tiff"]
-
+  
+  mattr_accessor :config_file
+  @@config_file = "config/activeadmin_settings.yml"
 
   # Load configuration from config/activeadmin_settings.yml
   def self.load_config
-    config_file = ::Rails.root.join("config/activeadmin_settings.yml")
+    config_file = ::Rails.root.join(@@config_file)
     @load_config = {}
 
     if File.exists?(config_file)
