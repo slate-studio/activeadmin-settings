@@ -59,6 +59,8 @@ var RLANG = {
   delete_head: 'Delete Head',
   title: 'Title',
   image_position: 'Position',
+  image_width: 'Width (with px or %)',
+  image_height: 'Height (with px or %)',
   none: 'None',
   left: 'Left',
   right: 'Right',
@@ -246,6 +248,10 @@ var RLANG = {
           '<option value="left">' + RLANG.left + '</option>' +
           '<option value="right">' + RLANG.right + '</option>' +
         '</select>' +
+        '<label>' + RLANG.image_width + '</label>' +
+        '<input id="redactor_form_image_width" placeholder="200px or 20%" />' +
+        '<label>' + RLANG.image_height + '</label>' +
+        '<input id="redactor_form_image_height" placeholder="200px or 20%" />' +        
         '</div>' +
         '<div id="redactor_modal_footer">' +
           '<a href="javascript:void(null);" id="redactor_image_delete_btn" class="redactor_modal_btn">' + RLANG._delete + '</a>&nbsp;&nbsp;&nbsp;' +
@@ -3093,6 +3099,8 @@ var RLANG = {
         $('#redactor_file_alt').val($el.attr('alt'));
         $('#redactor_image_edit_src').attr('href', $el.attr('src'));
         $('#redactor_form_image_align').val($el.css('float'));
+        $('#redactor_form_image_width').val($el.css('width'));
+        $('#redactor_form_image_height').val($el.css('height'));
 
         if ($(parent).get(0).tagName === 'A')
         {
@@ -3133,6 +3141,14 @@ var RLANG = {
       {
         $(el).css({ 'float': 'none', margin: '0' });
       }
+
+      // width and height
+
+      var width = $('#redactor_form_image_width').val();
+      var height = $('#redactor_form_image_height').val();
+
+      $(el).css({ 'width': width });
+      $(el).css({ 'height': height });
 
       // as link
       var link = $.trim($('#redactor_file_link').val());
