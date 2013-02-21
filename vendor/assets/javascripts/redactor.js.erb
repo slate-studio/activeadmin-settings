@@ -10,6 +10,135 @@
   Usage: $('#content').redactor();
 */
 
+
+window.redactor_load_image_gallery = function (opts, callback) {
+        if (opts.imageGetJson !== false)
+        {
+          $.getJSON(opts.imageGetJson, $.proxy(function(data) {
+
+            var folders = {};
+            var z = 0;
+
+            // folders
+            $.each(data, $.proxy(function(key, val)
+            {
+              if (typeof val.folder !== 'undefined')
+              {
+                z++;
+                folders[val.folder] = z;
+              }
+
+            }, this));
+
+            var folderclass = false;
+            $.each(data, $.proxy(function(key, val)
+            {
+              // title
+              var thumbtitle = '';
+              if (typeof val.title !== 'undefined')
+              {
+                thumbtitle = val.title;
+              }
+
+              var folderkey = 0;
+              if (!$.isEmptyObject(folders) && typeof val.folder !== 'undefined')
+              {
+                folderkey = folders[val.folder];
+                if (folderclass === false)
+                {
+                  folderclass = '.redactorfolder' + folderkey;
+                }
+              }
+
+              var img = $('<img src="' + val.thumb + '" class="redactorfolder redactorfolder' + folderkey + '" rel="' + val.image + '" title="' + thumbtitle + '" />');
+              $('#redactor_image_box').append(img);
+
+              $(img).click($.proxy(callback, this));
+
+
+            }, this));
+
+            // folders
+            if (!$.isEmptyObject(folders))
+            {
+              $('.redactorfolder').hide();
+              $(folderclass).show();
+
+              var onchangeFunc = function(e)
+              {
+                $('.redactorfolder').hide();
+                $('.redactorfolder' + $(e.target).val()).show();
+              }
+
+              var select = $('<select id="redactor_image_box_select">');
+              $.each(folders, function(k,v)
+              {
+                select.append($('<option value="' + v + '">' + k + '</option>'));
+              });
+
+              $('#redactor_image_box').before(select);
+              select.change(onchangeFunc);
+            }
+
+          }, this));
+        }
+        else
+        {
+          $('#redactor_tabs a').eq(1).remove();
+        }
+}
+
+
+window.redactor_init_image_uploader = function(app, opts, imageUploadCallback) {
+
+        if (opts.imageUpload !== false)
+        {
+
+          // dragupload
+          if (opts.uploadCrossDomain === false && app.isMobile() === false)
+          {
+
+            if ($('#redactor_file').size() !== 0)
+            {
+              $('#redactor_file').dragupload(
+              {
+                url: opts.imageUpload,
+                uploadFields: opts.uploadFields,
+                success: $.proxy(imageUploadCallback, this),
+                error: $.proxy(opts.imageUploadErrorCallback, this)
+              });
+            }
+          }
+
+          // ajax upload
+          app.uploadInit('redactor_file',
+          {
+            auto: true,
+            url: opts.imageUpload,
+            success: $.proxy(imageUploadCallback, this),
+            error: $.proxy(opts.imageUploadErrorCallback, this)
+          });
+        }
+        else
+        {
+          $('.redactor_tab').hide();
+          if (opts.imageGetJson === false)
+          {
+            $('#redactor_tabs').remove();
+            $('#redactor_tab3').show();
+          }
+          else
+          {
+            var tabs = $('#redactor_tabs a');
+            tabs.eq(0).remove();
+            tabs.eq(1).addClass('redactor_tabs_act');
+            $('#redactor_tab2').show();
+          }
+        }
+
+}
+
+
 var rwindow, rdocument;
 
 if (typeof RELANG === 'undefined')
@@ -84,7 +213,8 @@ var RLANG = {
   anchor: 'Anchor',
   link_new_tab: 'Open link in new tab',
   underline: 'Underline',
-  alignment: 'Alignment'
+  alignment: 'Alignment',
+  options: 'Options'
 };
 
 (function($){
@@ -238,21 +368,39 @@ var RLANG = {
 
       modal_image_edit: String() +
         '<div id="redactor_modal_content">' +
-        '<label>' + RLANG.title + '</label>' +
-        '<input id="redactor_file_alt" class="redactor_input" />' +
-        '<label>' + RLANG.link + '</label>' +
-        '<input id="redactor_file_link" class="redactor_input" />' +
-        '<label>' + RLANG.image_position + '</label>' +
-        '<select id="redactor_form_image_align">' +
-          '<option value="none">' + RLANG.none + '</option>' +
-          '<option value="left">' + RLANG.left + '</option>' +
-          '<option value="right">' + RLANG.right + '</option>' +
-        '</select>' +
-        '<label>' + RLANG.image_width + '</label>' +
-        '<input id="redactor_form_image_width" placeholder="200px or 20%" />' +
-        '<label>' + RLANG.image_height + '</label>' +
-        '<input id="redactor_form_image_height" placeholder="200px or 20%" />' +        
+          '<div id="redactor_tabs">' +
+            '<a href="javascript:void(null);" class="redactor_tabs_act">' + RLANG.options + '</a>' +
+            '<a href="javascript:void(null);">' + RLANG.upload + '</a>' +
+            '<a href="javascript:void(null);">' + RLANG.choose + '</a>' +
+          '</div>' +
+        
+          '<div id="redactor_tab1" class="redactor_tab">' +        
+            //'<label>' + RLANG.title + '</label>' +
+            '<input id="redactor_file_alt" class="redactor_input" />' +
+            '<label>' + RLANG.link + '</label>' +
+            '<input id="redactor_file_link" class="redactor_input" />' +
+            '<label>' + RLANG.image_position + '</label>' +
+            '<select id="redactor_form_image_align">' +
+              '<option value="none">' + RLANG.none + '</option>' +
+              '<option value="left">' + RLANG.left + '</option>' +
+              '<option value="right">' + RLANG.right + '</option>' +
+            '</select>' +
+            '<label>' + RLANG.image_width + '</label>' +
+            '<input id="redactor_form_image_width" placeholder="200px or 20%" />' +
+            '<label>' + RLANG.image_height + '</label>' +
+            '<input id="redactor_form_image_height" placeholder="200px or 20%" />' +        
+          '</div>' +
+
+          '<form id="redactorInsertImageForm" method="post" action="" enctype="multipart/form-data">' +
+            '<div id="redactor_tab2" class="redactor_tab" style="display: none;">' +
+              '<input type="file" id="redactor_file" name="file" />' +
+            '</div>' +
+            '<div id="redactor_tab3" class="redactor_tab" style="display: none;">' +
+              '<div id="redactor_image_box"></div>' +
+            '</div>' +
+          '</form>' +
         '</div>' +
+
         '<div id="redactor_modal_footer">' +
           '<a href="javascript:void(null);" id="redactor_image_delete_btn" class="redactor_modal_btn">' + RLANG._delete + '</a>&nbsp;&nbsp;&nbsp;' +
           '<a href="javascript:void(null);" class="redactor_modal_btn redactor_btn_modal_close">' + RLANG.cancel + '</a>' +
@@ -674,6 +822,17 @@ var RLANG = {
 
         }, this));
       }
+
+
+
+
+
+
+
+
+
+
+
 
       function afterBuild()
       {
@@ -3088,6 +3247,20 @@ var RLANG = {
       this.modalClose();
     },
 
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
     // INSERT IMAGE
     imageEdit: function(e)
     {
@@ -3110,11 +3283,34 @@ var RLANG = {
         $('#redactor_image_delete_btn').click($.proxy(function() { this.imageDelete($el); }, this));
         $('#redactorSaveBtn').click($.proxy(function() { this.imageSave($el); }, this));
 
+        window.redactor_load_image_gallery(this.opts, $.proxy( function(e) {
+          $el.attr( 'src', $(e.target).attr('rel') );
+          this.imageSave($el);
+        }, this));
+
+        window.redactor_init_image_uploader(this, this.opts, $.proxy( function(json) {
+          $el.attr( 'src', json.filelink );
+          this.imageSave($el);
+        }, this));
+
       }, this);
 
-      this.modalInit(RLANG.image, this.opts.modal_image_edit, 380, callback);
+      this.modalInit(RLANG.image, this.opts.modal_image_edit, 390, callback);
 
     },
+
+
+
+
+
+
+
+
+
+
+
+
+
     imageDelete: function(el)
     {
       $(el).remove();
