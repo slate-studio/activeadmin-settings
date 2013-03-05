@@ -1,3 +1,3 @@
 module ActiveadminSettings
-  VERSION = "0.4.32"
+  VERSION = "0.4.4"
 end
