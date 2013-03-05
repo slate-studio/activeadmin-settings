@@ -21,19 +21,19 @@ $ ->
     tr.find(".admin_actions").hide()
     tr.find(".form_actions").show()
 
-  $("#admins .admin .credentials_link").live "click", (e) ->
+  $('document').on 'click', "#admins .admin .credentials_link", (e) ->
     e.preventDefault()
     btn = $(this)
     tr  = $(btn.attr("data-id"))
     show_credentials_form(tr)
 
-  $("#admins .admin .cancel_link").live "click", (e) ->
+  $('document').on 'click', "#admins .admin .cancel_link", (e) ->
     e.preventDefault()
     btn = $(this)
     tr  = $(btn.attr("data-id"))
     hide_credentials_form(tr)
 
-  $("#admins .admin .update_link").live "click", (e) ->
+  $('document').on 'click', "#admins .admin .update_link", (e) ->
     e.preventDefault()
     btn = $(this)
     tr  = $(btn.attr("data-id"))
