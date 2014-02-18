@@ -9,8 +9,8 @@
   </ul>
 
   <% groups.each do |g| %>
-    <div id="<%= g[:slug] %>">
-      <%= render :partial => "settings_table", :locals => {:settings => g[:settings]} %>
+    <div id="<%= g[:slug] %>" class="settings_table_container">
+      <%= render :partial => "settings_table", :locals => { :slug => g[:slug], :settings => g[:settings]} %>
     </div>
   <% end %>
 

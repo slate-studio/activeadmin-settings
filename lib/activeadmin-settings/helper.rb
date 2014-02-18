@@ -1,11 +1,11 @@
 module ActiveadminSettings
   module Helpers
-    def settings_value(name)
-      Setting[name]
+    def settings_value(name, locale = nil)
+      Setting.value(name, locale)
     end
 
-    def settings_link_value(name, html_options={})
-      val = Setting[name]
+    def settings_link_value(name, locale = nil, html_options = {})
+      val = Setting.value(name, locale)
 
       if not val.empty? # add regular expression check here
         title, url = val.split(')')

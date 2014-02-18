@@ -1,4 +1,7 @@
 en:
+  locales:
+    en: 'English'
+    ru: 'Russian'
   admin:
     settings:
       admin:

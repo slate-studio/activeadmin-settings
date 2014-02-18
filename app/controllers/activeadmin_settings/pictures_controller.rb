@@ -8,7 +8,7 @@ class ActiveadminSettings::PicturesController < ApplicationController
 
   def create
     @picture = ActiveadminSettings::Picture.new
-    @picture.data = params[:file]
+    @picture.data = permitted_params[:file]
 
     if @picture.save
       render :json => { :filelink => @picture.url }
@@ -19,6 +19,10 @@ class ActiveadminSettings::PicturesController < ApplicationController
 
   # Define the permitted params in case the app is using Strong Parameters
   def permitted_params
-    params.permit :file
-  end unless Rails::VERSION::MAJOR == 3 && !defined? StrongParameters
+    if Rails::VERSION::MAJOR == 3 && !defined? StrongParameters
+      params
+    else
+      params.permit :file
+    end
+  end 
 end

@@ -1,4 +1,7 @@
 ru:
+  locales:
+    en: 'Английский'
+    ru: 'Русский'
   admin:
     settings:
       admin:
@@ -19,7 +22,11 @@ ru:
         saved: 'Сохранено'
   activerecord:
     models:
-      activeadmin_settings/setting: 'Настройки'
+      activeadmin_settings/setting: 
+        one: 'Настройки'
+        few: 'Настройки'
+        many: 'Настройки'
+        other: 'Настройки'
     attributes:
       activeadmin_settings/setting:
         name: 'Название'
