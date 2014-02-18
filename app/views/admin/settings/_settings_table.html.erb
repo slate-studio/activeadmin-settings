@@ -5,8 +5,8 @@
         class="index_table index">
   <thead>
     <tr>
-      <th class="">Name</th>
-      <th class="">Value</th>
+      <th class=""><%= ActiveadminSettings::Setting.human_attribute_name(:name) %></th>
+      <th class=""><%= ActiveadminSettings::Setting.human_attribute_name(:value) %></th>
       <th class=""></th>
     </tr>
   </thead>
@@ -34,7 +34,7 @@
                             :as => :text,
                             :input_html => { :class => "settings-redactor" } %>
               <% else %>
-                <%= f.input :string, :placeholder => "Default: " + setting.default_value %>
+                <%= f.input :string, :placeholder => "#{t '.default' }: " + setting.default_value %>
               <% end %>
             <% end %>
           <% end %>
@@ -43,9 +43,9 @@
       <td>
         <a href="#" class="member_link update_link"
                     data-id="#setting_<%= setting.id %>">
-          Update
+          <%=t '.update' %>
         </a>
-        <span class="saved-state">Saved</span>
+        <span class="saved-state"><%=t '.saved' %></span>
       </td>
     </tr>
   <% end %>

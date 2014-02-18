@@ -17,25 +17,25 @@
     <span class="admin_actions">
       <a href="#" class="member_link credentials_link"
                   data-id="#admin_<%= admin.id %>">
-        Credentials
+        <%=t '.credentials' %>
       </a>
       <a href="/admin/admin_users/<%= admin.id %>"
          class="member_link delete_link"
          data-method="delete"
-         data-confirm="Are you sure?"
+         data-confirm="<%=t '.are_you_sure' %>"
          data-id="#admin_<%= admin.id %>">
-        Delete
+        <%=t '.delete' %>
       </a>
     </span>
 
     <span class="form_actions">
       <a href="#" class="member_link update_link"
                   data-id="#admin_<%= admin.id %>">
-        Update
+        <%=t '.update' %>
       </a>
       <a href="#" class="member_link cancel_link"
                   data-id="#admin_<%= admin.id %>">
-        Cancel
+        <%=t '.cancel' %>
       </a>
     </span>
   </td>
