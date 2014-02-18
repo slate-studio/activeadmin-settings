@@ -3,7 +3,7 @@ class ActiveadminSettings::AdminUsersController < ApplicationController
 
   def update
     @object = AdminUser.find(params[:id])
-    if @object.update_attributes(params[:admin_user])
+    if @object.update_attributes(permitted_params[:admin_user])
       render :text => "ok"
     else
       render :text => @object.errors.to_json, :status => :unprocessable_entity
@@ -11,7 +11,7 @@ class ActiveadminSettings::AdminUsersController < ApplicationController
   end
 
   def create
-    @object = AdminUser.new(params[:admin_user])
+    @object = AdminUser.new(permitted_params[:admin_user])
     if @object.save
       render :partial => "admin/settings/admin", :locals => {:admin => @object}, :layout => false
     else
@@ -24,4 +24,13 @@ class ActiveadminSettings::AdminUsersController < ApplicationController
     @object.destroy
     redirect_to "/admin/settings#admins"
   end
+
+  # Define the permitted params in case the app is using Strong Parameters
+  def permitted_params
+    if Rails::VERSION::MAJOR == 3 && !defined? StrongParameters
+      params
+    else
+      params.permit admin_user: [:email, :password, :password_confirmation]
+    end
+  end 
 end

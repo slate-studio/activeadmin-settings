@@ -4,9 +4,11 @@ module ActiveadminSettings
       base.mount_uploader  :file, ActiveadminSettings::SettingsFileUploader
 
       # Validators
-      base.validates_presence_of   :name
-      base.validates_uniqueness_of :name
-      base.validates_length_of     :name, minimum: 1
+      # base.validates_presence_of   :name
+      # base.validates_uniqueness_of :name, scope: :locale
+      # base.validates_length_of     :name, minimum: 1
+
+      base.validates :name, presence: true, uniqueness: { scope: :locale }, length: { minimum: 1 }
 
       base.extend ClassMethods
     end
@@ -14,13 +16,14 @@ module ActiveadminSettings
 
     # Class
     module ClassMethods
-      def initiate_setting(name)
-        s = self.new(name: name)
-        if s.type == "text" or s.type == "html"
-          s.string = s.default_value
+      def initiate_setting(name, locale = nil)
+        locale ||= I18n.default_locale
+        setting = self.new(name: name, locale: locale.to_s)
+        if setting.type == "text" or setting.type == "html"
+          setting.string = setting.default_value
         end
-        s.save
-        s
+        setting.save
+        setting
       end
     end
 
@@ -34,19 +37,26 @@ module ActiveadminSettings
       (ActiveadminSettings.all_settings[name]["description"] ||= "").to_s
     end
 
-    def default_value
-      val = (ActiveadminSettings.all_settings[name]["default_value"] ||= "").to_s
-
-      if type == "file" and not val.include? '//'
-        val = ActionController::Base.helpers.asset_path(val)
+    def default_value(locale = nil)
+      default_value = ActiveadminSettings.all_settings[name]["default_value"]
+      if default_value.is_a? Hash
+        default_value = default_value[(locale || I18n.default_locale).to_s]
+        default_value ||= default_value[I18n.default_locale.to_s]
+        default_value ||= ""
+      else
+        default_value = (default_value ||= "").to_s
       end
 
-      val
+      if type == "file" and not default_value.include? '//'
+        default_value = ActionController::Base.helpers.asset_path(default_value)
+      end
+
+      default_value
     end
 
     def value
       val = respond_to?(type) ? send(type).to_s : send(:string).to_s
-      val = default_value if val.empty?
+      val = default_value(locale) if val.empty?
       val.html_safe
     end
 
@@ -68,17 +78,20 @@ module ActiveadminSettings
 
       include SettingMethods
 
-      def self.[](name)
-        find_or_create_by(:name => name).value
+      def self.value(name, locale)
+        find_or_create_by(:name => name, :locale => (locale || I18n.locale)).value
       end
     end
   else
     class Setting < ActiveRecord::Base
       include SettingMethods
-      attr_accessible :name, :string, :file, :remove_file
 
-      def self.[](name)
-        find_or_create_by_name(name).value
+      unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
+        attr_accessible :name, :string, :file, :remove_file, :locale
+      end
+
+      def self.value(name, locale)
+        find_or_create_by_name_and_locale(name, (locale || I18n.locale)).value
       end
     end
   end

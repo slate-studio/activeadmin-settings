@@ -12,7 +12,7 @@ namespace :activeadmin do
 
     desc "Add settings from activeadmin_settings.yml file to the db"
     task :flush => :environment do
-      ActiveadminSettings::Setting.all.destroy
+      ActiveadminSettings::Setting.find_each(&:destroy)
     end
   end
 end

@@ -3,10 +3,19 @@ class ActiveadminSettings::SettingsController < ApplicationController
 
   def update
     @object = ActiveadminSettings::Setting.find(params[:id])
-    if @object.update_attributes(params[:setting])
+    if @object.update_attributes(permitted_params[:setting])
       render :text => @object.value
     else
       render :text => "error"
     end
   end
+
+  # Define the permitted params in case the app is using Strong Parameters
+  def permitted_params
+    if Rails::VERSION::MAJOR == 3 && !defined? StrongParameters
+      params
+    else
+      params.permit setting: [:name, :string, :file, :remove_file, :locale]
+    end
+  end 
 end

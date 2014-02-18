@@ -19,8 +19,17 @@ enable_redactor = ->
 
 $ ->
   $('#settings_tabs').easytabs
-    animate:true
-    animationSpeed:0
-    tabActiveClass:"selected"
+    animate: true
+    animationSpeed: 0
+    tabActiveClass: "selected"
+    updateHash: false
+
+  $('.inner_tabs').each () ->
+    if $('.tabs', this).length
+      $(this).easytabs
+        animate: true
+        animationSpeed: 0
+        tabActiveClass: "selected"
+        updateHash: false
 
   enable_redactor()

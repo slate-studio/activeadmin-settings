@@ -1,0 +1,36 @@
+en:
+  locales:
+    en: 'English'
+    ru: 'Russian'
+  admin:
+    settings:
+      admin:
+        credentials: 'Credentials'
+        are_you_sure: 'Are you sure?'
+        delete: 'Delete'
+        update: 'Update'
+        cancel: 'Cancel'
+      admin_form:
+        new_admin: 'New Admin'
+        create: 'Create'
+        cancel: 'Cancel'
+      index:
+        admins: 'Administrators'
+      settings_table:
+        default: 'Default'
+        update: 'Update'
+        saved: 'Saved'
+  activerecord:
+    models:
+      activeadmin_settings/setting: 'Settings'
+    attributes:
+      activeadmin_settings/setting:
+        name: 'Name'
+        value: 'Value'
+        file: 'File'
+        remove_file: 'Remove file?'
+        string: 'String'
+      admin_user:
+        email: 'Email'
+        password: 'Password'
+        password_confirmation: 'Password confirmation'
