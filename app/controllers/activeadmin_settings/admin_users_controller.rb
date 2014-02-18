@@ -24,4 +24,9 @@ class ActiveadminSettings::AdminUsersController < ApplicationController
     @object.destroy
     redirect_to "/admin/settings#admins"
   end
+
+  # Define the permitted params in case the app is using Strong Parameters
+  def permitted_params
+    params.permit admin_user: [:email, :password, :password_confirmation]
+  end unless Rails::VERSION::MAJOR == 3 && !defined? StrongParameters
 end

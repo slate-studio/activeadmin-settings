@@ -9,4 +9,9 @@ class ActiveadminSettings::SettingsController < ApplicationController
       render :text => "error"
     end
   end
+
+  # Define the permitted params in case the app is using Strong Parameters
+  def permitted_params
+    params.permit setting: [:name, :string, :file, :remove_file]
+  end unless Rails::VERSION::MAJOR == 3 && !defined? StrongParameters
 end

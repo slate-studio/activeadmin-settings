@@ -75,7 +75,10 @@ module ActiveadminSettings
   else
     class Setting < ActiveRecord::Base
       include SettingMethods
-      attr_accessible :name, :string, :file, :remove_file
+
+      unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
+        attr_accessible :name, :string, :file, :remove_file
+      end
 
       def self.[](name)
         find_or_create_by_name(name).value

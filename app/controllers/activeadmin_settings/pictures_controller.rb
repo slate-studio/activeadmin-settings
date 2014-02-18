@@ -16,4 +16,9 @@ class ActiveadminSettings::PicturesController < ApplicationController
       render :nothing => true
     end
   end
+
+  # Define the permitted params in case the app is using Strong Parameters
+  def permitted_params
+    params.permit :file
+  end unless Rails::VERSION::MAJOR == 3 && !defined? StrongParameters
 end
