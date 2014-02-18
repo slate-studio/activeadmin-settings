@@ -6,10 +6,6 @@ module ActiveadminSettings
       source_root File.expand_path('../templates', __FILE__)
 
       def copy_files
-        # admin
-        puts "Installing admin:"
-        copy_file "admin/settings.rb",    "app/admin/settings.rb"
-
         # config
         puts "Installing config:"
         copy_file "config/activeadmin_settings.yml", "config/activeadmin_settings.yml"

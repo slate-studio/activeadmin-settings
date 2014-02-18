@@ -22,7 +22,11 @@ en:
         saved: 'Saved'
   activerecord:
     models:
-      activeadmin_settings/setting: 'Settings'
+      activeadmin_settings/setting: 
+        one: 'Setting'
+        few: 'Settings'
+        many: 'Settings'
+        other: 'Settings'
     attributes:
       activeadmin_settings/setting:
         name: 'Name'

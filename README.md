@@ -19,6 +19,11 @@ Run installer:
 
     $ rails g activeadmin_settings:install
 
+Add i18n configuration to `config/application.rb` file:
+
+    config.i18n.default_locale = :en
+    config.i18n.available_locales = [:en, :ru]
+
 #### ActiveRecord
 
     gem "aws-s3"
@@ -117,16 +122,25 @@ Some examples:
         type:           link
         description:    Company facebook page link
         default_value:  (Facebook) https://www.facebook.com/
-
+ 
+    Localization Example:
+      Welcome title:
+        type:           string
+        description:    Localized welcome title
+        default_value: 
+          en: English default title
+          ru: Russian default title
+          de: German default title
 
 Settings could be integrated into templates as well as models or controllers code using `settings_value` helper. For example:
 
 * `<%= settings_value("CEO Message") %>` - provides html
+* `<%= settings_value("CEO Message", :de) %>` - provides localized html for German language
 * `<%= image_tag setting_value("Logo Image") %>` - provides an image url: `<img src="/production-assets-path/home/home-logo.jpg" />`
 * `<%= settings_value("Facebook Link") %>` - provides link: `<a href="https://www.facebook.com/" title="Facebook">Facebook</a>`
 
 
-If setting value is `null` or an empty string default setting value is used which is defined in `config/activeadmin_settings.yml`.
+If setting value is `null` or an empty string default setting value is used which is defined in `config/activeadmin_settings.yml`. If locale is not specified, default is used.
 
 
 ### FUTURE FEATURES
