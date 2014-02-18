@@ -21,5 +21,5 @@ Gem::Specification.new do |gem|
   gem.add_dependency("carrierwave", "~> 0.8.0")
   gem.add_dependency("bson_ext", "~> 1.8.2")
   gem.add_dependency("devise", "~> 2.2.3")
-  gem.add_dependency("activeadmin", "~> 0.6.0")
+  gem.add_dependency("activeadmin", "~> 1.0.0")
 end
