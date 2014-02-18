@@ -23,13 +23,16 @@ module ActiveadminSettings
         if File.exist?('app/assets/javascripts/active_admin.js')
           insert_into_file  "app/assets/javascripts/active_admin.js",
                             "//= require activeadmin_settings\n", :after => "base\n"
+        elsif File.exist?('app/assets/javascripts/active_admin.js.coffee')
+          insert_into_file  "app/assets/javascripts/active_admin.js.coffee",
+                            "#= require activeadmin_settings\n", :after => "base\n"
         else
-          puts "It doesn't look like you've installed activeadmin: active_admin.js is missing.\nPlease install it and try again."
+          puts "It doesn't look like you've installed activeadmin: active_admin.js and active_admin.js.coffee are missing.\nPlease install it and try again."
         end
 
         if File.exist?('app/assets/stylesheets/active_admin.css.scss')
-          insert_into_file  "app/assets/stylesheets/active_admin.css.scss",
-                            "//= require activeadmin_settings\n", :before => "// Active Admin CSS Styles\n"
+          prepend_to_file "app/assets/stylesheets/active_admin.css.scss",
+                            "//= require activeadmin_settings\n"
         else
           puts "It doesn't look like you've installed activeadmin: active_admin.scss is missing.\nPlease install it and try again."
         end
