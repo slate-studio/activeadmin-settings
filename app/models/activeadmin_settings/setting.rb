@@ -38,9 +38,10 @@ module ActiveadminSettings
     end
 
     def default_value(locale = nil)
+      locale ||= self[:locale] || I18n.default_locale
       default_value = ActiveadminSettings.all_settings[name]["default_value"]
       if default_value.is_a? Hash
-        default_value = default_value[(locale || I18n.default_locale).to_s]
+        default_value = default_value[locale.to_s]
         default_value ||= default_value[I18n.default_locale.to_s]
         default_value ||= ""
       else
@@ -56,7 +57,7 @@ module ActiveadminSettings
 
     def value
       val = respond_to?(type) ? send(type).to_s : send(:string).to_s
-      val = default_value(locale) if val.empty?
+      val = default_value if val.empty?
       val.html_safe
     end
 
