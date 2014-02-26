@@ -58,7 +58,9 @@ module ActiveadminSettings
   else
     class Picture < ActiveRecord::Base
 
-      attr_accessible :data_content_type, :data_file_size, :height, :width, :data
+      unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
+        attr_accessible :data_content_type, :data_file_size, :height, :width, :data
+      end
 
       include PictureMethods
 

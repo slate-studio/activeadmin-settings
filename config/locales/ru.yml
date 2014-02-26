@@ -23,7 +23,7 @@ ru:
   activerecord:
     models:
       activeadmin_settings/setting: 
-        one: 'Настройки'
+        one: 'Настройка'
         few: 'Настройки'
         many: 'Настройки'
         other: 'Настройки'
