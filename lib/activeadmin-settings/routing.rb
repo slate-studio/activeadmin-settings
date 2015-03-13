@@ -1,7 +1,7 @@
 module ActionDispatch::Routing
   class Mapper
     def mount_activeadmin_settings
-      scope '/admin', :module => "activeadmin_settings" do
+      scope '/admin', :module => "activeadmin_settings", as: 'admin' do
         scope "redactor" do
           resources :pictures,  :only => [:index, :create]
         end
