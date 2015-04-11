@@ -1,5 +1,5 @@
 class ActiveadminSettings::PicturesController < ApplicationController
-  before_filter :authenticate_admin_user!
+  before_filter :authenticate!
 
   def index
     @pictures = ActiveadminSettings::Picture.all
@@ -25,4 +25,10 @@ class ActiveadminSettings::PicturesController < ApplicationController
       params.permit :file
     end
   end 
+
+  private
+
+  def authenticate!
+    send ActiveAdmin.application.authentication_method 
+  end
 end
