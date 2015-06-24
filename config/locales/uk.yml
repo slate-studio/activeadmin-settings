@@ -1,0 +1,41 @@
+ru:
+  locales:
+    en: 'Англійська'
+    ru: 'Російська'
+    ru: 'Українська'
+  admin:
+    settings:
+      admin:
+        credentials: 'Данні для входу'
+        are_you_sure: 'Ви впевнені?'
+        delete: 'Видалити'
+        update: 'Оновити'
+        cancel: 'Відмінити'
+      admin_form:
+        new_admin: 'Новий Адміністратор'
+        create: 'Створити'
+        cancel: 'Оновити'
+      index:
+        admins: 'Адміністратори'
+      settings_table:
+        default: 'По замовчуванню'
+        update: 'Оновити'
+        saved: 'Збережено'
+  activerecord:
+    models:
+      activeadmin_settings/setting:
+        one: 'Налаштування'
+        few: 'Налаштування'
+        many: 'Налаштування'
+        other: 'Налаштування'
+    attributes:
+      activeadmin_settings/setting:
+        name: 'Назва'
+        value: 'Значення'
+        file: 'Файл'
+        remove_file: 'Видалити файл?'
+        string: 'Строка'
+      admin_user:
+        email: 'Email'
+        password: 'Пароль'
+        password_confirmation: 'Підтвердження паролю'
