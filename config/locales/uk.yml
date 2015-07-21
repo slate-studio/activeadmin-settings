@@ -2,7 +2,7 @@ uk:
   locales:
     en: 'Англійська'
     ru: 'Російська'
-    ru: 'Українська'
+    uk: 'Українська'
   admin:
     settings:
       admin:
