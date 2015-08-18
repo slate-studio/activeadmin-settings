@@ -37,6 +37,10 @@ module ActiveadminSettings
       (ActiveadminSettings.all_settings[name]["description"] ||= "").to_s
     end
 
+    def group
+      (ActiveadminSettings.all_settings[name]["group"] ||= "").to_s
+    end
+
     def default_value(locale = nil)
       locale ||= self[:locale] || I18n.default_locale
       default_value = ActiveadminSettings.all_settings[name]["default_value"]

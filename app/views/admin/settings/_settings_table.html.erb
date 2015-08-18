@@ -24,7 +24,13 @@
           </tr>
         </thead>
         <tbody>
-          <% settings.select{ |s| (s.try(:locale).to_sym || I18n.default_locale) == locale}.each do |setting| %>
+          <% settings.select{ |s| (s.try(:locale).to_sym || I18n.default_locale) == locale}.sort_by{|setting| setting.group}.each do |setting| %>
+          <% if (not setting.group.empty?) and (not setting.group.eql?(@prevGroup)) %>
+            <tr>
+              <th colspan="3" class=""><%= setting.group %></th>
+            </tr>
+            <% @prevGroup = setting.group %>
+          <% end %>
           <tr class="odd option-type-<%= setting.type %>" id="setting_<%= setting.id %>">
             <td>
               <strong><%= setting.name %></strong></br>
