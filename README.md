@@ -1,8 +1,10 @@
 ## activeadmin-settings
 
-**IN DEVELOPMENT**
+**DEPRECATED**
 
-**TODO**: use yaml file only for settings synchronisation, all settings should be stored in db with all those default values and other meta.
+This gem is not supported and developed anymore. For a flexible Rails CMS solutions we recommend to have a look at [Character](https://github.com/slate-studio/chr) & [Venice](https://github.com/alexkravets/venice) projects.
+
+--
 
 Easy to use general purpose settings backend for activeadmin.
 
